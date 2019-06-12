@@ -65,9 +65,11 @@ batman:
 **第四步**：查看聚合文档。
 
 原生文档：访问`http://localhost:port/swagger-ui.html`
+![Example-1](https://github.com/fafeidou/static/blob/master/swagger-simple.png?raw=true)
+
 
 增强文档：访问`http://localhost:port/doc.html`
-
+![Example-1](https://github.com/fafeidou/static/blob/master/swagger-nice.png?raw=true)
 > 代码示例具体可见`spring-boot-starter-swagger-examples`目录
 
 ## 使用spring cloud gateway 中的路由自动配置
