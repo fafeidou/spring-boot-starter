@@ -13,7 +13,7 @@ import java.util.List;
  * @create 2018-12-10 10:57
  */
 @Component
-@ConfigurationProperties("ck.swagger-resource")
+@ConfigurationProperties("batman.swagger-resource")
 @Data
 public class SwaggerResourceConfig {
     private List<Node> nodes = new ArrayList<>();

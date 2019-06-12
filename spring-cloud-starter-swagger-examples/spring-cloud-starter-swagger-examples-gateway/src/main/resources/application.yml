@@ -10,7 +10,7 @@ spring:
 server:
   port: 9999
 
-ck:
+batman:
   swagger-resource:
     nodes:
       - {

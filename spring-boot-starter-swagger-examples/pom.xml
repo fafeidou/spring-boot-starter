@@ -5,11 +5,11 @@
     <parent>
         <groupId>com.batman</groupId>
         <artifactId>spring-boot-starter</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>2.1.0.version</version>
     </parent>
     <groupId>com.batman</groupId>
     <artifactId>spring-boot-starter-swagger-examples</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>2.1.0.version</version>
     <name>spring-boot-starter-swagger-examples</name>
     <description>Demo project for Spring Boot</description>
 
@@ -25,7 +25,7 @@
         <dependency>
             <groupId>com.batman</groupId>
             <artifactId>spring-boot-starter-swagger</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>2.1.0.version</version>
         </dependency>
     </dependencies>
 
