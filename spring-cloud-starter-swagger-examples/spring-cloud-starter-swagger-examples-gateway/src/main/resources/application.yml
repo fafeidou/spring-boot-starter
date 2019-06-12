@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+server:
+  port: 9999
+
+ck:
+  swagger-resource:
+    nodes:
+      - {
+        name: provider,
+        location: "/service-provider/v2/api-docs?group=provider",
+        version: 2.0
+      }

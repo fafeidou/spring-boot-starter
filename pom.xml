@@ -17,8 +17,11 @@
     <modules>
         <module>spring-boot-starter-swagger</module>
         <module>spring-boot-starter-swagger-examples</module>
+        <module>spring-cloud-starter-swagger</module>
+        <module>spring-cloud-starter-swagger-examples</module>
     </modules>
     <properties>
+        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <java.version>1.8</java.version>
     </properties>
 
@@ -27,13 +30,23 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
+        <!--Lombok-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
