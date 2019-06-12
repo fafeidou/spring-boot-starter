@@ -1,0 +1,16 @@
+batman:
+  swagger:
+    title: api manage RESTful Content APIs
+    description: <font color="red">接口文档</font>
+    version: 1.0
+    modules:
+    - {
+      model-name: model_one,
+      packages: ["com.batman.swagger.model_one.controller"],
+      group-name: model_one
+    }
+    - {
+      model-name: model_two,
+      packages: ["com.batman.swagger.model_two.controller"],
+      group-name: model_two
+    }
