@@ -13,6 +13,7 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -33,6 +34,7 @@ import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +49,7 @@ import static com.google.common.collect.Lists.newArrayList;
 @EnableAutoConfiguration
 @ConditionalOnBean(SwaggerConfig.class)
 @EnableSwaggerBootstrapUI
+@RefreshScope
 public class SwaggerAutoConfiguration implements ApplicationContextAware {
     private Logger logger = LoggerFactory.getLogger(SwaggerAutoConfiguration.class);
     private final SwaggerConfig swaggerConfig;
@@ -62,7 +65,8 @@ public class SwaggerAutoConfiguration implements ApplicationContextAware {
     }
 
     @Bean
-    public String createDocket() {
+    @RefreshScope
+    public List<Docket> createDocket() {
         BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(Docket.class);
 
         beanDefinitionBuilder.addConstructorArgValue(DocumentationType.SWAGGER_2);
@@ -71,9 +75,11 @@ public class SwaggerAutoConfiguration implements ApplicationContextAware {
 
         BeanDefinitionRegistry beanFactory = (BeanDefinitionRegistry) configurableApplicationContext.getBeanFactory();
 
+        List<Docket> dockets = new ArrayList<>();
+
         if (!CollectionUtils.isEmpty(swaggerConfig.getModules())) {
 
-            swaggerConfig.getModules().forEach(module -> {
+            for (Module module : swaggerConfig.getModules()) {
                 beanFactory.registerBeanDefinition(module.getGroupName(), beanDefinition);
 
                 Docket docket = configurableApplicationContext.getBean(module.getGroupName(), Docket.class);
@@ -82,16 +88,18 @@ public class SwaggerAutoConfiguration implements ApplicationContextAware {
                 if (!CollectionUtils.isEmpty(module.getPackages())) {
                     module.getPackages().forEach(str -> list.add(RequestHandlerSelectors.basePackage(str)));
                 }
-                docket.securityContexts(securityContexts()).securitySchemes(securitySchemes()).apiInfo(apiInfo())
+                Docket build = docket.securityContexts(securityContexts()).securitySchemes(securitySchemes()).apiInfo(apiInfo())
                         .groupName(Optional.ofNullable(module.getGroupName()).orElse(""))
                         .pathMapping("")
                         .select()
                         .apis(Predicates.or(list)::apply)
                         .paths(PathSelectors.any())
                         .build();
-            });
+                dockets.add(build);
+            }
+
         }
-        return "createDocket";
+        return dockets;
 
     }
 
@@ -99,7 +107,7 @@ public class SwaggerAutoConfiguration implements ApplicationContextAware {
      * 配置认证模式
      */
     private List<ApiKey> securitySchemes() {
-        return newArrayList(new ApiKey("Authorization", "Authorization", "header"),new ApiKey("UserId", "UserId", "header"));
+        return newArrayList(new ApiKey("Authorization", "Authorization", "header"), new ApiKey("UserId", "UserId", "header"));
     }
 
     /**
