@@ -1,6 +1,6 @@
-package com.batman.swagger.config;
+package com.batman.common.swagger.config;
 
-import com.batman.swagger.domain.Node;
+import com.batman.common.swagger.domain.Node;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

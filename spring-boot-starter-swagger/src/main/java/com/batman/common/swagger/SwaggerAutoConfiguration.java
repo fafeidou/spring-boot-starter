@@ -1,4 +1,4 @@
-package com.batman.swagger;
+package com.batman.common.swagger;
 
 import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 import com.google.common.base.Predicate;
@@ -11,9 +11,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -34,7 +32,6 @@ import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,9 +44,7 @@ import static com.google.common.collect.Lists.newArrayList;
 @EnableSwagger2
 @EnableConfigurationProperties(value = SwaggerConfig.class)
 @EnableAutoConfiguration
-@ConditionalOnBean(SwaggerConfig.class)
 @EnableSwaggerBootstrapUI
-@RefreshScope
 public class SwaggerAutoConfiguration implements ApplicationContextAware {
     private Logger logger = LoggerFactory.getLogger(SwaggerAutoConfiguration.class);
     private final SwaggerConfig swaggerConfig;
@@ -65,8 +60,7 @@ public class SwaggerAutoConfiguration implements ApplicationContextAware {
     }
 
     @Bean
-    @RefreshScope
-    public List<Docket> createDocket() {
+    public String createDocket() {
         BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(Docket.class);
 
         beanDefinitionBuilder.addConstructorArgValue(DocumentationType.SWAGGER_2);
@@ -75,11 +69,9 @@ public class SwaggerAutoConfiguration implements ApplicationContextAware {
 
         BeanDefinitionRegistry beanFactory = (BeanDefinitionRegistry) configurableApplicationContext.getBeanFactory();
 
-        List<Docket> dockets = new ArrayList<>();
-
         if (!CollectionUtils.isEmpty(swaggerConfig.getModules())) {
 
-            for (Module module : swaggerConfig.getModules()) {
+            swaggerConfig.getModules().forEach(module -> {
                 beanFactory.registerBeanDefinition(module.getGroupName(), beanDefinition);
 
                 Docket docket = configurableApplicationContext.getBean(module.getGroupName(), Docket.class);
@@ -88,18 +80,17 @@ public class SwaggerAutoConfiguration implements ApplicationContextAware {
                 if (!CollectionUtils.isEmpty(module.getPackages())) {
                     module.getPackages().forEach(str -> list.add(RequestHandlerSelectors.basePackage(str)));
                 }
-                Docket build = docket.securityContexts(securityContexts()).securitySchemes(securitySchemes()).apiInfo(apiInfo())
+                docket.securityContexts(securityContexts()).securitySchemes(securitySchemes()).apiInfo(apiInfo())
                         .groupName(Optional.ofNullable(module.getGroupName()).orElse(""))
                         .pathMapping("")
                         .select()
                         .apis(Predicates.or(list)::apply)
                         .paths(PathSelectors.any())
                         .build();
-                dockets.add(build);
-            }
+            });
 
         }
-        return dockets;
+        return "createDocket";
 
     }
 
@@ -132,8 +123,8 @@ public class SwaggerAutoConfiguration implements ApplicationContextAware {
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title(StringUtils.isEmpty(swaggerConfig.getTitle()) ? "RESTful APIs" : swaggerConfig.getTitle())
-                .description(StringUtils.isEmpty(swaggerConfig.getDescription()) ? "微服务接口文档" : swaggerConfig.getDescription())
+                .title(StringUtils.isEmpty(swaggerConfig.getTitle()) ? "CHARLES-KEITH RESTful APIs" : swaggerConfig.getTitle())
+                .description(StringUtils.isEmpty(swaggerConfig.getDescription()) ? "桦洁商贸电子商务微服务接口文档" : swaggerConfig.getDescription())
                 .license("")
                 .version(StringUtils.isEmpty(swaggerConfig.getVersion()) ? "1.0" : swaggerConfig.getVersion())
                 .build();

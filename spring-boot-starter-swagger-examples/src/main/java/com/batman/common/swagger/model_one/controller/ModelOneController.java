@@ -1,4 +1,4 @@
-package com.batman.swagger.model_one.controller;
+package com.batman.common.swagger.model_one.controller;
 
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;

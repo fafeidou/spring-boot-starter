@@ -1,4 +1,4 @@
-package com.batman.swagger.config;
+package com.batman.common.swagger.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

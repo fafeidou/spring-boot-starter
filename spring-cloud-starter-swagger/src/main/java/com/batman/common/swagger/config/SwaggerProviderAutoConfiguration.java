@@ -1,16 +1,14 @@
-package com.batman.swagger.config;
+package com.batman.common.swagger.config;
 
-import com.batman.swagger.domain.Node;
+import com.batman.common.swagger.domain.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 import java.util.List;

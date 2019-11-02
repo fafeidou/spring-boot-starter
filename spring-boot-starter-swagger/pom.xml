@@ -9,7 +9,6 @@
     </parent>
     <groupId>com.batman</groupId>
     <artifactId>spring-boot-starter-swagger</artifactId>
-    <version>2.1.0.version</version>
     <name>spring-boot-starter-swagger</name>
     <description>Demo project for Spring Boot</description>
 

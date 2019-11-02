@@ -1,4 +1,4 @@
-package com.batman.swagger;
+package com.batman.common.swagger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

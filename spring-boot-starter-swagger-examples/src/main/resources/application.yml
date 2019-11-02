@@ -6,11 +6,13 @@ batman:
     modules:
     - {
       model-name: model_one,
-      packages: ["com.batman.config.model_one.controller"],
+      packages: ["com.batman.common.swagger.model_one.controller"],
       group-name: model_one
     }
     - {
       model-name: model_two,
-      packages: ["com.batman.config.model_two.controller"],
+      packages: ["com.batman.common.swagger.model_two.controller"],
       group-name: model_two
     }
+server:
+  port: 8899

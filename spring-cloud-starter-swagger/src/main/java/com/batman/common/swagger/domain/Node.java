@@ -1,4 +1,4 @@
-package com.batman.swagger.domain;
+package com.batman.common.swagger.domain;
 
 import lombok.Data;
 

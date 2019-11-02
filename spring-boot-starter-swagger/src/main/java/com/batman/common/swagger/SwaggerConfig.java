@@ -1,4 +1,4 @@
-package com.batman.swagger;
+package com.batman.common.swagger;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ *
  * @author Batman.qin
  * @Create 2018-11-30 14:42
  */

@@ -1,9 +1,11 @@
-package com.batman.swagger;
+package com.batman.common.swagger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ *
  * @author Batman.qin
  * @create 2018-12-07 20:13
  */
