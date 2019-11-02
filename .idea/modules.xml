@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-starter.iml" filepath="$PROJECT_DIR$/spring-boot-starter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-starter-swagger/spring-boot-starter-swagger.iml" filepath="$PROJECT_DIR$/spring-boot-starter-swagger/spring-boot-starter-swagger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-starter-swagger-examples/spring-boot-starter-swagger-examples.iml" filepath="$PROJECT_DIR$/spring-boot-starter-swagger-examples/spring-boot-starter-swagger-examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-starter-swagger/spring-cloud-starter-swagger.iml" filepath="$PROJECT_DIR$/spring-cloud-starter-swagger/spring-cloud-starter-swagger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-starter-swagger-examples/spring-cloud-starter-swagger-examples.iml" filepath="$PROJECT_DIR$/spring-cloud-starter-swagger-examples/spring-cloud-starter-swagger-examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-starter-swagger-examples/spring-cloud-starter-swagger-examples-eureka/spring-cloud-starter-swagger-examples-eureka.iml" filepath="$PROJECT_DIR$/spring-cloud-starter-swagger-examples/spring-cloud-starter-swagger-examples-eureka/spring-cloud-starter-swagger-examples-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-starter-swagger-examples/spring-cloud-starter-swagger-examples-gateway/spring-cloud-starter-swagger-examples-gateway.iml" filepath="$PROJECT_DIR$/spring-cloud-starter-swagger-examples/spring-cloud-starter-swagger-examples-gateway/spring-cloud-starter-swagger-examples-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-starter-swagger-examples/spring-cloud-starter-swagger-examples-provider/spring-cloud-starter-swagger-examples-provider.iml" filepath="$PROJECT_DIR$/spring-cloud-starter-swagger-examples/spring-cloud-starter-swagger-examples-provider/spring-cloud-starter-swagger-examples-provider.iml" />
+    </modules>
+  </component>
+</project>
